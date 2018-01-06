@@ -1,0 +1,78 @@
+<div class="ui long modal dialog" #messagemodal_tag>
+    <div class="header">
+        <h2>{{modalheader}}</h2>
+    </div>
+    <div class="modalLeft">
+        <div class="mat-app-background basic-container">
+            <mat-form-field>
+                <mat-select placeholder="Select a table" (change)="onChange($event.value)">
+                <mat-option *ngFor="let table of tables" [value]="table.value">
+                    {{ table.viewValue }}
+                </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div *ngIf="selectedTable == 'Invoices'">
+                <mat-selection-list #shoes >
+                    <mat-list-option *ngFor="let field of fields">
+                    {{field.name}}
+                    </mat-list-option>
+                </mat-selection-list>
+            </div>
+        </div>
+    </div>
+    <!-- <app-data-list
+
+            [objectList]="gadgetObjectList"
+            [objectTitleList]="gadgetObjectTitleList"
+            [placeHolderText]="placeHolderText"
+            [layoutColumnOneWidth]="layoutColumnOneWidth"
+            [layoutColumnTwoWidth]="layoutColumnTwoWidth"
+            [listHeader]="listHeader"
+            [facetTags]="facetTags">
+
+            <ng-template  let-item="$implicit">
+
+                <div [@showHideAnimation] class="ui segment" style="background-color:white;">
+                    <div class="ui large middle aligned divided list">
+                        <div class="item">
+                            <div class="right floated content">
+                                <a *ngIf="item.actions.length == 1"
+                                   mat-raised-button
+                                   routerLink="."
+                                   (click)="actionHandler(item, item.actions[0].name)" color="primary">
+                                    {{item.actions[0].name}}
+                                </a>
+                            </div>
+                            <img class="ui image" src="{{item.icon}}">
+                            <div class="content">
+                                <div class="header">{{item.name}}</div>
+                                {{item.description}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui bottom attached">
+                        <button *ngFor="let tag of item.tags" class="ui basic gray compact button">{{tag.name}}
+                        </button>
+                    </div>
+                </div>
+
+            </ng-template>
+
+        </app-data-list> -->
+
+    <div  class="modalRigth">
+            <mat-form-field>
+                    <mat-select placeholder="Select a chart" (change)="onChartChange($event.value)">
+                    <mat-option *ngFor="let chart of charts" [value]="chart.value">
+                        {{ chart.viewValue }}
+                    </mat-option>
+                    </mat-select>
+            </mat-form-field>
+        <app-preview #yourChild [gadgetType]="gadgetType"></app-preview>
+    </div>
+    <div class="actions">
+            <a class="ui approve button" (click)="onAdd();">Add</a>
+        <div class="ui approve button">Close</div>
+    </div>
+</div>
+      
