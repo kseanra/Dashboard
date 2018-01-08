@@ -54,6 +54,7 @@ export class AddGadgetComponent implements AfterViewInit {
 
     @Output() addGadgetEvent: EventEmitter<any> = new EventEmitter();
 
+    selectedFields: any[] = [];
     gadgetObjectList: any[] = [];
     gadgetObjectTitleList: string[] = [];
     placeHolderText = 'Begin typing gadget name';
@@ -67,19 +68,23 @@ export class AddGadgetComponent implements AfterViewInit {
     modalicon: string;
     modalheader: string;
     modalmessage: string;
-    selectedTable : string;
-    selectedChart : string;
-    config : any;
+    selectedTable: string;
+    selectedChart: string;
+    config: any;
 
     @ViewChild('messagemodal_tag') messagemodalRef: ElementRef;
     @ViewChild('yourChild') child;
+    @ViewChild('fieldslist') myfields;
 
     messageModal: any;
 
     tables = [
         {value: 'Customers', viewValue: 'Customers'},
-        {value: 'Customer Payable', viewValue: 'Customer Payable'},
-        {value: 'Invoices', viewValue: 'Invoices'}
+        {value: 'Customer Transaction', viewValue: 'Invoices'},
+        {value: 'Order', viewValue: 'Order'},
+        {value: 'Supplier', viewValue: 'Supplier'},
+        {value: 'Supplier Transaction', viewValue: 'Supplier Transaction'},
+        {value: 'Employee', viewValue: 'Employee'}
     ];
 
     charts = [
@@ -92,9 +97,13 @@ export class AddGadgetComponent implements AfterViewInit {
      ];
     
     fields = [ 
-        {name : 'Customer Code', type: 'string'},
-        {name : 'Year', type: 'Int'},
-        {name : 'Amount', type: 'float'}];
+        {name : 'CustomerCode', type: 'string'},
+        {name : 'InvoiceNumber', type: 'Int'},
+        {name : 'InvoiceDate', type: 'data'},
+        {name : 'InvoiceAmount', type: 'double'},
+        {name : 'InvoiceBalance', type: 'double'},
+        {name : 'OverdueDays', type: 'Int'}
+    ];
 
     constructor(private _addGadgetService: AddGadgetService) {
 
@@ -157,8 +166,9 @@ export class AddGadgetComponent implements AfterViewInit {
 
     }
 
-    onChange(input){
+    onChange(input) {
         this.selectedTable = input;
+        //console.log(this.myfields.selectedOptions.selected.length);
     }
 
 
@@ -231,8 +241,27 @@ export class AddGadgetComponent implements AfterViewInit {
             actionItem.properties = this.config;
             this.actionHandler(actionItem, 'add');
 
+        }        
+    }
+
+    saveData(input) {
+        console.log(input);
+        if(input.selected) {
+            if(this.selectedFields.indexOf(input.source.value) < 0) {
+
+                this.selectedFields.push(input.source.value);
+            }
+        }
+        else
+        {
+            this.selectedFields.splice(this.selectedFields.indexOf(input.source.value), 1);
         }
 
-        
+        console.log(this.selectedFields);
     }
+}
+
+class field{
+    name: string;
+    
 }

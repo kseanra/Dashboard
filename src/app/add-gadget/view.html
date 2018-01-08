@@ -11,12 +11,15 @@
                 </mat-option>
                 </mat-select>
             </mat-form-field>
-            <div *ngIf="selectedTable == 'Invoices'">
-                <mat-selection-list #shoes >
-                    <mat-list-option *ngFor="let field of fields">
+            <div *ngIf="selectedTable == 'Customer Transaction'">
+                <mat-selection-list #fieldslist >
+                    <mat-list-option #fieldItem *ngFor="let field of fields" [value]="field.name" (selectionChange)= "saveData($event)" >
                     {{field.name}}
                     </mat-list-option>
                 </mat-selection-list>
+                <p>
+                    Options selected: {{fieldslist.selectedOptions.selected.length}}
+                </p>
             </div>
         </div>
     </div>

@@ -2,6 +2,7 @@ import {Component, Input, ViewContainerRef, OnInit, ComponentFactoryResolver} fr
 import {GadgetInstanceService} from '../board/grid/grid.service';
 import {GadgetFactory} from './gadget-factory';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {Invoices} from '../gadgets/rawdata';
 
 /*
  this class handles the dynamic creation of components
@@ -11,17 +12,17 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
      displayName: string;
      groupId: string;
      position: any;
-     properties : any;
+     properties: any;
 
  };
 
  class PropertyPageProperty{
-     controlType : string;
+     controlType: string;
      key: string;
-     label : string;
-     value : string;
-     required : boolean;
-     order : any;
+     label: string;
+     value: string;
+     required: boolean;
+     order: any;
  };
 
 
